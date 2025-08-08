@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 6514773020438416708}
   - component: {fileID: 7856736559287936841}
   - component: {fileID: 876361620444505964}
+  - component: {fileID: 7938069366494174040}
   m_Layer: 0
   m_Name: ClosedBarrel
   m_TagString: Untagged
@@ -224,3 +225,19 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!114 &7938069366494174040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3916487794813098578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a102fe6dd68b468699b482721438903a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  ParentForObstacles: {fileID: 5100268907384030948}

@@ -476,6 +476,7 @@ GameObject:
   - component: {fileID: 64387724641943484}
   - component: {fileID: 4681561381137677656}
   - component: {fileID: 767184338009135264}
+  - component: {fileID: 6788706072861792304}
   m_Layer: 0
   m_Name: OpenBarrell
   m_TagString: Untagged
@@ -580,6 +581,22 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 3
+--- !u!114 &6788706072861792304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8759028133188528530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a102fe6dd68b468699b482721438903a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  ParentForObstacles: {fileID: 490655943766699093}
 --- !u!1001 &733350411535947754
 PrefabInstance:
   m_ObjectHideFlags: 0

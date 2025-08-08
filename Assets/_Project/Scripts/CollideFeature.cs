@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CollideFeature : MonoBehaviour
@@ -6,7 +7,15 @@ public class CollideFeature : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out IHitable hitable))
         {
-            hitable.Hit();
+            hitable.Hit(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.TryGetComponent(out IHitable hitable))
+        {
+            hitable.Hit(gameObject);
         }
     }
 }

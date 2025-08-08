@@ -2,5 +2,6 @@ using UnityEngine;
 
 public interface IHitable
 {
-    void Hit();
+    public bool IsUsed { get; set; }
+    void Hit(GameObject hitter);
 }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8300411290873277830}
   - component: {fileID: 6276097496585949893}
   - component: {fileID: 3971575508117888281}
+  - component: {fileID: 2809376526842804173}
   m_Layer: 0
   m_Name: SM_Prop_LightPole_Base_02.001
   m_TagString: Untagged
@@ -137,6 +138,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2809376526842804173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2862362869707152498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a102fe6dd68b468699b482721438903a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  ParentForObstacles: {fileID: 8714995223399873455}
 --- !u!1 &5176236801571443603
 GameObject:
   m_ObjectHideFlags: 0
