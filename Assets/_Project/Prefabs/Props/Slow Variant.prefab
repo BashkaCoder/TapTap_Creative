@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2244917790241920895, guid: fc1007812c6ac3547bec6fd8fecb4c97, type: 3}
+      propertyPath: ParentForObstacles
+      value: 
+      objectReference: {fileID: 3257974419161653115}
     - target: {fileID: 6004551517727974804, guid: fc1007812c6ac3547bec6fd8fecb4c97, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -73,3 +77,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc1007812c6ac3547bec6fd8fecb4c97, type: 3}
+--- !u!4 &3257974419161653115 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6004551517727974804, guid: fc1007812c6ac3547bec6fd8fecb4c97, type: 3}
+  m_PrefabInstance: {fileID: 9107076364439517935}
+  m_PrefabAsset: {fileID: 0}

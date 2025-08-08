@@ -705,6 +705,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _wholeModel: {fileID: 8753725587269540421}
   _slicedModel: {fileID: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  ParentForObstacles: {fileID: 5305606422355850484}
 --- !u!114 &6881590616926953356
 MonoBehaviour:
   m_ObjectHideFlags: 0

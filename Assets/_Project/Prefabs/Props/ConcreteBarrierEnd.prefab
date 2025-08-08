@@ -1175,7 +1175,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &169827329717046800
 Transform:
   m_ObjectHideFlags: 0
@@ -1383,7 +1383,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8387754627423722418
 Transform:
   m_ObjectHideFlags: 0
@@ -1514,7 +1514,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _wholeModel: {fileID: 8387754627423722418}
-  _slicedModel: {fileID: 0}
+  _slicedModel: {fileID: 169827329717046800}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  ParentForObstacles: {fileID: 1238295747969503450}
 --- !u!114 &3526622524924443351
 MonoBehaviour:
   m_ObjectHideFlags: 0
