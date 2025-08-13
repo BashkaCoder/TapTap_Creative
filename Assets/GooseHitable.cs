@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GooseHitable : MonoBehaviour, IHitable
 {
@@ -94,5 +96,10 @@ public class GooseHitable : MonoBehaviour, IHitable
         foreach (var a in _colliders)
             foreach (var b in otherCols)
                 if (a && b) Physics.IgnoreCollision(a, b, false);
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        _rb.useGravity = true;
     }
 }

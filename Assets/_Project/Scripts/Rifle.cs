@@ -94,6 +94,11 @@ public class Rifle : MonoBehaviour
                 hitable.Hit(gameObject);
             }
 
+            if (hit.collider.TryGetComponent<Rigidbody>(out var rb))
+            {
+                rb.useGravity = true;
+            }
+            
             // Маленький физический взрыв
             ApplyMicroExplosion(hit.point);
         }

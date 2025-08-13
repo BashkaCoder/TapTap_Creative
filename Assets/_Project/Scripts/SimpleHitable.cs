@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -59,6 +60,14 @@ namespace _Project.Scripts
 
             foreach (var rb in ParentForObstacles.GetComponentsInChildren<Rigidbody>(true))
                 rb.gameObject.layer = layer;
+        }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            foreach (var rb in _rbs)
+            {
+                rb.useGravity = true;
+            }
         }
     }
 }
