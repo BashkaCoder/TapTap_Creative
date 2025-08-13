@@ -597,6 +597,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   ParentForObstacles: {fileID: 490655943766699093}
+  _delayBeforeApply: 0.25
+  _explosionForce: 2
+  _explosionRadius: 1
+  _upwardsModifier: 0.3
+  _rbs:
+  - {fileID: 767184338009135264}
 --- !u!1001 &733350411535947754
 PrefabInstance:
   m_ObjectHideFlags: 0

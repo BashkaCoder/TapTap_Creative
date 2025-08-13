@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class FragmentedHitable : MonoBehaviour, IHitable
@@ -7,33 +8,65 @@ public class FragmentedHitable : MonoBehaviour, IHitable
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private Transform ParentForObstacles;
     
+    [Header("Explosion Settings")]
+    [SerializeField] private float _explosionForce = 1f;
+    [SerializeField] private float _explosionRadius = 1f;
+    [SerializeField] private float _upwardsModifier = 0.1f;
+    [SerializeField] private float _delayBeforeLayerChange = 0.5f;
+    
     public bool IsUsed { get; set; }
 
     public void Hit(GameObject hitter)
     {
-        if(IsUsed)
-            return;
-        
+        if (IsUsed) return;
+
+        IsUsed = true;
+
         _wholeModel.gameObject.SetActive(false);
         _slicedModel.gameObject.SetActive(true);
-        IsUsed = true;
-        SetUsedLayers();
+        if (!hitter.TryGetComponent<Health>(out var health))
+            return;
+        
+        health.ApplyDamage(0.2f, false);
+
+        // гарантированно запуск из живого компонента
+        StartCoroutineFromSafeHost();
     }   
     
-    public void SetUsedLayers()
+    private void StartCoroutineFromSafeHost()
     {
-        var layer = Mathf.RoundToInt(Mathf.Log(layerMask.value, 2)); 
+        MonoBehaviour host = this; // если точно на активном объекте
 
-        var colliders = ParentForObstacles.GetComponentsInChildren<Collider>(true);
-        foreach (var collider in colliders)
+        if (!this.isActiveAndEnabled)
         {
-            collider.gameObject.layer = layer;
+            // ищем кого-нибудь активного (например, sliced модель или родителя)
+            host = _slicedModel.GetComponent<MonoBehaviour>();
+            if (host == null)
+            {
+                host = _slicedModel.gameObject.AddComponent<DummyMono>();
+            }
         }
-        
-        var rbs = ParentForObstacles.GetComponentsInChildren<Rigidbody>(true);
-        foreach (var rb in rbs)
-        {
-            rb.gameObject.layer = layer;
-        }
+
+        host.StartCoroutine(DelayedSetUsedLayers());
+    }    
+    
+    private IEnumerator DelayedSetUsedLayers()
+    {
+        yield return new WaitForSeconds(_delayBeforeLayerChange);
+        SetUsedLayers();
     }
+    
+    private void SetUsedLayers()
+    {
+        int layer = Mathf.RoundToInt(Mathf.Log(layerMask.value, 2));
+
+        foreach (var col in ParentForObstacles.GetComponentsInChildren<Collider>(true))
+            col.gameObject.layer = layer;
+
+        foreach (var rb in ParentForObstacles.GetComponentsInChildren<Rigidbody>(true))
+            rb.gameObject.layer = layer;
+    }
+    
+    // fallback-монобех для запуска
+    private class DummyMono : MonoBehaviour { }
 }

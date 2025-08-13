@@ -192,6 +192,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   ParentForObstacles: {fileID: 2414546926561763429}
+  _delayBeforeApply: 1.5
+  _explosionForce: 2
+  _explosionRadius: 1
+  _upwardsModifier: 0.3
+  _rbs:
+  - {fileID: 9203982564361981170}
 --- !u!1 &4482300354298783030
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,6 +268,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   ParentForObstacles: {fileID: 2414546926561763429}
+  _delayBeforeApply: 1.5
+  _explosionForce: 2
+  _explosionRadius: 1
+  _upwardsModifier: 0.3
+  _rbs:
+  - {fileID: 9203982564361981170}
 --- !u!1 &4812570985525282195
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,7 +385,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -448,6 +460,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   ParentForObstacles: {fileID: 2414546926561763429}
+  _delayBeforeApply: 1.5
+  _explosionForce: 2
+  _explosionRadius: 1
+  _upwardsModifier: 0.3
+  _rbs:
+  - {fileID: 9203982564361981170}
 --- !u!1 &7923758089594835754
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,6 +536,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   ParentForObstacles: {fileID: 2414546926561763429}
+  _delayBeforeApply: 1.5
+  _explosionForce: 2
+  _explosionRadius: 1
+  _upwardsModifier: 0.3
+  _rbs:
+  - {fileID: 9203982564361981170}
 --- !u!1 &8591918609124879166
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,3 +612,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   ParentForObstacles: {fileID: 2414546926561763429}
+  _delayBeforeApply: 1.5
+  _explosionForce: 2
+  _explosionRadius: 1
+  _upwardsModifier: 0.3
+  _rbs:
+  - {fileID: 9203982564361981170}

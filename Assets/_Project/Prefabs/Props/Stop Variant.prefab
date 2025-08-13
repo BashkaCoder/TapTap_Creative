@@ -9,9 +9,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 76390368360698440, guid: 58217db07158e02499748f98b882e9e8, type: 3}
+      propertyPath: _rbs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 76390368360698440, guid: 58217db07158e02499748f98b882e9e8, type: 3}
       propertyPath: ParentForObstacles
       value: 
       objectReference: {fileID: 425781253927727857}
+    - target: {fileID: 76390368360698440, guid: 58217db07158e02499748f98b882e9e8, type: 3}
+      propertyPath: '_rbs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8463944150598718177}
+    - target: {fileID: 76390368360698440, guid: 58217db07158e02499748f98b882e9e8, type: 3}
+      propertyPath: '_rbs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8463944150598718177}
     - target: {fileID: 8157773144751269371, guid: 58217db07158e02499748f98b882e9e8, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -80,5 +92,10 @@ PrefabInstance:
 --- !u!4 &425781253927727857 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8157773144751269371, guid: 58217db07158e02499748f98b882e9e8, type: 3}
+  m_PrefabInstance: {fileID: 8421334102384252682}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &8463944150598718177 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 120311736632968683, guid: 58217db07158e02499748f98b882e9e8, type: 3}
   m_PrefabInstance: {fileID: 8421334102384252682}
   m_PrefabAsset: {fileID: 0}

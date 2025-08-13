@@ -209,7 +209,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &191945954160376306
 Transform:
   m_ObjectHideFlags: 0
@@ -573,7 +573,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8753725587269540421
 Transform:
   m_ObjectHideFlags: 0
@@ -709,6 +709,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   ParentForObstacles: {fileID: 5305606422355850484}
+  _explosionForce: 1
+  _explosionRadius: 1
+  _upwardsModifier: 0.1
+  _delayBeforeLayerChange: 0.5
 --- !u!114 &6881590616926953356
 MonoBehaviour:
   m_ObjectHideFlags: 0

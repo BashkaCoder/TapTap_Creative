@@ -16,6 +16,11 @@ public class Cart : MonoBehaviour, IHitable
         foreach (var wheel in _wheels)
             Destroy(wheel.GetComponent<FixedJoint>());
 
+        if (!hitter.TryGetComponent<Health>(out var health))
+            return;
+        
+        health.ApplyDamage(0.2f, false);
+        
         IsUsed = true;
         SetUsedLayers();
     }

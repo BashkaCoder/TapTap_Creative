@@ -133,6 +133,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: abe90afa7cd56a440ba0694511a77742, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1061004654895400943}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: abe90afa7cd56a440ba0694511a77742, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4231763328887836086}
   m_SourcePrefab: {fileID: 100100000, guid: abe90afa7cd56a440ba0694511a77742, type: 3}
 --- !u!1 &3895158568150571665 stripped
 GameObject:
@@ -169,7 +172,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3895158568150571665}
   serializedVersion: 4
-  m_Mass: 0.04
+  m_Mass: 0.4
   m_Drag: 0
   m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -187,7 +190,28 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 3
+--- !u!114 &4231763328887836086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3895158568150571665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 170c486e1dc305e498e76f1aadef846c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _featherVfxPrefab: {fileID: 2173842499836460533, guid: e641104815c3de24faaeb3027d6d954b, type: 3}
+  _vfxScale: 2
+  _rb: {fileID: 1061004654895400943}
+  _colliders:
+  - {fileID: 1094847418329564810}
+  _impulse: 6
+  _torque: 40
+  _animator: {fileID: 3409180075394308710}
+  _ignoreSeconds: 1000
 --- !u!4 &4415131513400541227 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: abe90afa7cd56a440ba0694511a77742, type: 3}

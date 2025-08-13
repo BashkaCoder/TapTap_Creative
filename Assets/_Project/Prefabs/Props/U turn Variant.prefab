@@ -9,9 +9,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7940501814333847290, guid: 6d58187714796344ba7098cbc44e6ffb, type: 3}
+      propertyPath: _rbs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7940501814333847290, guid: 6d58187714796344ba7098cbc44e6ffb, type: 3}
       propertyPath: layerMask.m_Bits
       value: 128
       objectReference: {fileID: 0}
+    - target: {fileID: 7940501814333847290, guid: 6d58187714796344ba7098cbc44e6ffb, type: 3}
+      propertyPath: '_rbs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 28673938999575188}
     - target: {fileID: 8327716300058403076, guid: 6d58187714796344ba7098cbc44e6ffb, type: 3}
       propertyPath: m_Name
       value: U turn Variant
@@ -77,3 +85,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d58187714796344ba7098cbc44e6ffb, type: 3}
+--- !u!54 &28673938999575188 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 9202559986339321791, guid: 6d58187714796344ba7098cbc44e6ffb, type: 3}
+  m_PrefabInstance: {fileID: 9210935767077688619}
+  m_PrefabAsset: {fileID: 0}

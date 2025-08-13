@@ -27,6 +27,7 @@ public class Rifle : MonoBehaviour
 
     public void StartShooting()
     {
+        if (!isActiveAndEnabled) return;
         if (_shootingCoroutine != null) return;
 
         _muzzleFlash?.Play();
@@ -38,8 +39,12 @@ public class Rifle : MonoBehaviour
     {
         _muzzleFlash?.Stop();
         _muzzleLight?.StopFlicker();
-        StopCoroutine(_shootingCoroutine);
-        _shootingCoroutine = null;
+
+        if (_shootingCoroutine != null)
+        {
+            StopCoroutine(_shootingCoroutine);
+            _shootingCoroutine = null;
+        }
     }
 
     private IEnumerator ShootingRoutine()
@@ -52,20 +57,24 @@ public class Rifle : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        // Если объект уходит в SetActive(false) / убивается — корутина и эффекты должны прекратиться
+        StopShooting();
+    }
+    
     private void FireOnce()
     {
         Vector3 start = _firePoint.position;
-
-        // Вычисляем направление с разбросом в пределах конуса
         Vector3 baseDirection = _firePoint.forward;
         Vector3 spreadDirection = GetRandomDirectionInCone(baseDirection, _spreadAngle);
-
         Vector3 end = start + spreadDirection * _shootDistance;
 
         if (Physics.Raycast(start, spreadDirection, out RaycastHit hit, _shootDistance, _hitMask))
         {
             end = hit.point;
 
+            // Эффекты
             if (_bulletImpactEffectPrefab)
             {
                 var impact = Instantiate(_bulletImpactEffectPrefab, hit.point, Quaternion.LookRotation(hit.normal));
@@ -78,6 +87,15 @@ public class Rifle : MonoBehaviour
                 decal.transform.SetParent(hit.collider.transform);
                 Destroy(decal, _decalLifetime);
             }
+
+            // Вызов Hit()
+            if (hit.collider.TryGetComponent<IHitable>(out var hitable))
+            {
+                hitable.Hit(gameObject);
+            }
+
+            // Маленький физический взрыв
+            ApplyMicroExplosion(hit.point);
         }
 
         var trail = Instantiate(_bulletTrailPrefab);
@@ -100,5 +118,21 @@ public class Rifle : MonoBehaviour
         Vector3 deviated = (forward + randomPoint.x * right + randomPoint.y * up).normalized;
 
         return deviated;
+    }
+    
+    private void ApplyMicroExplosion(Vector3 center)
+    {
+        float radius = 0.5f; // небольшой радиус
+        float force = 0.5f; // сила микро-взрыва
+        float upwardsModifier = 0.05f;
+
+        Collider[] colliders = Physics.OverlapSphere(center, radius);
+        foreach (var collider in colliders)
+        {
+            if (collider.attachedRigidbody != null && !collider.attachedRigidbody.isKinematic)
+            {
+                collider.attachedRigidbody.AddExplosionForce(force, center, radius, upwardsModifier, ForceMode.Impulse);
+            }
+        }
     }
 }

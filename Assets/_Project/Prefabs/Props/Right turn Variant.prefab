@@ -9,9 +9,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 109489293083933774, guid: 8ac9eceeacc25704a856555360a80992, type: 3}
+      propertyPath: _rbs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 109489293083933774, guid: 8ac9eceeacc25704a856555360a80992, type: 3}
       propertyPath: ParentForObstacles
       value: 
       objectReference: {fileID: 5732897078255719008}
+    - target: {fileID: 109489293083933774, guid: 8ac9eceeacc25704a856555360a80992, type: 3}
+      propertyPath: '_rbs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 4174981502688458336}
     - target: {fileID: 1341906374353757360, guid: 8ac9eceeacc25704a856555360a80992, type: 3}
       propertyPath: m_Name
       value: Right turn Variant
@@ -77,6 +85,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ac9eceeacc25704a856555360a80992, type: 3}
+--- !u!54 &4174981502688458336 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 8046644020289247754, guid: 8ac9eceeacc25704a856555360a80992, type: 3}
+  m_PrefabInstance: {fileID: 6222830733318089834}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5732897078255719008 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1861314926069448202, guid: 8ac9eceeacc25704a856555360a80992, type: 3}
