@@ -43607,7 +43607,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: f32ddba7ef91f0143a0feda5f8da1056, type: 2}
     - target: {fileID: 2821822929239494230, guid: f1654cb4c39f8ad4187495c7d7e27d0f, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3316356388325666251, guid: f1654cb4c39f8ad4187495c7d7e27d0f, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -43618,8 +43618,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: f32ddba7ef91f0143a0feda5f8da1056, type: 2}
     - target: {fileID: 4374508871748391700, guid: f1654cb4c39f8ad4187495c7d7e27d0f, type: 3}
+      propertyPath: _driftRadius
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374508871748391700, guid: f1654cb4c39f8ad4187495c7d7e27d0f, type: 3}
+      propertyPath: _pulseVibrato
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374508871748391700, guid: f1654cb4c39f8ad4187495c7d7e27d0f, type: 3}
+      propertyPath: _pulseInterval.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374508871748391700, guid: f1654cb4c39f8ad4187495c7d7e27d0f, type: 3}
       propertyPath: _targetLocalOffset.z
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4548137742841640506, guid: f1654cb4c39f8ad4187495c7d7e27d0f, type: 3}
       propertyPath: m_LocalPosition.x
