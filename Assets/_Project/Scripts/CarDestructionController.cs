@@ -87,6 +87,9 @@ public class CarDestructionController : MonoBehaviour
 
                     var rbMoney = child.GetComponent<Rigidbody>();
                     if (rbMoney == null) rbMoney = child.gameObject.AddComponent<Rigidbody>();
+                    rbMoney.mass = 0.05f;
+                    rbMoney.interpolation = RigidbodyInterpolation.Interpolate;
+                    rbMoney.collisionDetectionMode = CollisionDetectionMode.Continuous;
                     rbMoney.useGravity = true;
                 }
             }
