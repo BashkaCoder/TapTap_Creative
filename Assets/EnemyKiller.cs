@@ -33,15 +33,11 @@ public class EnemyKiller : MonoBehaviour
     {
         // R — перезапуск сцены
         if (Input.GetKeyDown(KeyCode.R))
-        {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
 
         // K — мгновенно убить врага
         if (Input.GetKeyDown(KeyCode.K))
-        {
             KillEnemyNow();
-        }
     }
 
     private void OnAnyCarDied()
@@ -68,7 +64,7 @@ public class EnemyKiller : MonoBehaviour
 
     private static void StopCar(GameObject root)
     {
-        if (root == null) return;
+        if (!root) return;
 
         // Выключаем управление/логику
         var playerInput = root.GetComponent<PlayerInputController>();
@@ -95,15 +91,16 @@ public class EnemyKiller : MonoBehaviour
             rifles[i].enabled = false;
         }
 
-        // Жёстко гасим скорость
+        // ВАЖНО: не трогаем Rigidbody, если есть контроллер разрушения — он сам занимается дрифтом/фризом.
+        if (root.GetComponent<CarDestructionController>()) return;
+
+        // Fallback (если нет CarDestructionController): мягко остановим
         var rb = root.GetComponent<Rigidbody>();
         if (rb)
         {
-            rb.linearVelocity  = Vector3.zero; // в проекте используются кастомные проперти
+            rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
-            //rb.linearDamping   = 1000f;
-            //rb.angularDamping  = 1000f;
-            // rb.isKinematic = true; // если нужно прям «заморозить», раскомментируй
+            // без экстремальных damping и без перевода в kinematic
         }
     }
 

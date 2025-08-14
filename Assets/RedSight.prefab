@@ -106,6 +106,7 @@ MonoBehaviour:
   _startAhead: 2
   _driftDuration: 1.25
   _driftEase: 3
-  _blinkCount: 4
-  _blinkSpeed: 0.08
   _lockPunch: {x: 0.07, y: 0.07, z: 0.07}
+  _targetLocalOffset: {x: 0, y: 0, z: -1}
+  _debugUseMouse: 1
+  _debugEnemy: {fileID: 0}

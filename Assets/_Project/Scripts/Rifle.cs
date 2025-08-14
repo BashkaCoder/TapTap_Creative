@@ -127,9 +127,9 @@ public class Rifle : MonoBehaviour
     
     private void ApplyMicroExplosion(Vector3 center)
     {
-        float radius = 0.5f; // небольшой радиус
-        float force = 0.5f; // сила микро-взрыва
-        float upwardsModifier = 0.05f;
+        float radius = 0.25f; // небольшой радиус
+        float force = 0.25f; // сила микро-взрыва
+        float upwardsModifier = 0.1f;
 
         Collider[] colliders = Physics.OverlapSphere(center, radius);
         foreach (var collider in colliders)

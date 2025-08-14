@@ -26,7 +26,7 @@ public class CarDestructionController : MonoBehaviour
     [SerializeField] private ParticleSystem _particleSystem;
     [SerializeField] private Transform _moneyParent;
     [SerializeField] private Material _dollarMaterial;
-    
+
     private Rigidbody _rb;
     private bool _destroyed;
 
@@ -56,60 +56,63 @@ public class CarDestructionController : MonoBehaviour
         if (_destroyed) return;
         _destroyed = true;
 
-        // 1) Выключаем управление (и у игрока, и у NPC, если есть)
+        // сразу отдаём объект под физику (важно для «смерти от пули»)
+        _rb.isKinematic = false;
+
         DisableControl();
 
+        // FX
+        if (_explosionFxPrefab)
+            Instantiate(_explosionFxPrefab, transform.position + Vector3.up * 0.8f, Quaternion.identity);
+        if (_particleSystem != null) _particleSystem.Play();
+
+        // Перекраска
+        if (_destroyedMaterial) ReplaceAllMaterials(_destroyedMaterial);
+
+        // Импульсы — строго в следующий физ.тик (после выключения контроллеров движения)
+        StartCoroutine(ApplyDeathForcesNextFixed());
+
+        // Фриз через задержку
+        StartCoroutine(FreezeAfterDelay(_freezeDelay));
+
+        // Деньги — один раз
         if (_moneyParent != null)
         {
             foreach (Transform child in _moneyParent)
             {
-                if (child.GetComponent<BoxCollider>() != null)
+                if (child.TryGetComponent<BoxCollider>(out _))
                 {
-                    child.GetComponent<MeshRenderer>().sharedMaterial = _dollarMaterial;
-                    var rbMoney = child.gameObject.AddComponent<Rigidbody>();
+                    var r = child.GetComponent<MeshRenderer>();
+                    if (r) r.sharedMaterial = _dollarMaterial;
+
+                    var rbMoney = child.GetComponent<Rigidbody>();
+                    if (rbMoney == null) rbMoney = child.gameObject.AddComponent<Rigidbody>();
                     rbMoney.useGravity = true;
                 }
             }
         }
-        
-        // 2) «Занос» — боковой импульс
+    }
+
+    private IEnumerator ApplyDeathForcesNextFixed()
+    {
+        // дождаться следующего FixedUpdate, чтобы любые MovePosition/Rotation от контроллеров не стерли импульс
+        yield return new WaitForFixedUpdate();
+
+        _rb.isKinematic = false;
+        _rb.constraints = RigidbodyConstraints.None; // чтобы точно крутило
+
         Vector3 side = _driftRight ? transform.right : -transform.right;
         _rb.AddForce(side * _driftSideImpulse, ForceMode.Impulse);
 
-        // Крутящий момент по двум-трём осям для эффектного переворота
         Vector3 torqueDir = new Vector3(
-            Random.Range(-0.5f, 0.5f) * _driftTorqueY,   // X
-            (_driftRight ? -1f : 1f) * _driftTorqueY,    // Y
-            Random.Range(-0.5f, 0.5f) * _driftTorqueY    // Z
+            Random.Range(-0.5f, 0.5f) * _driftTorqueY,
+            (_driftRight ? -1f : 1f) * _driftTorqueY,
+            Random.Range(-0.5f, 0.5f) * _driftTorqueY
         );
         _rb.AddTorque(torqueDir, ForceMode.Impulse);
 
-        // 3) Взрывной FX (частицы). Без звука.
-        if (_explosionFxPrefab)
-            Instantiate(_explosionFxPrefab, transform.position + Vector3.up * 0.8f, Quaternion.identity);
-
-        // 4) Подброс и доп. вращение
         _rb.AddForce(Vector3.up * _upImpulse, ForceMode.Impulse);
         _rb.AddTorque(Random.onUnitSphere * _randomTorque, ForceMode.Impulse);
-
-        // 5) Перекраска всех материалов в «чёрный металл»
-        if (_destroyedMaterial) ReplaceAllMaterials(_destroyedMaterial);
-
-        // 6) Через задержку — полная остановка
-        StartCoroutine(FreezeAfterDelay(_freezeDelay));
-        
-        //7) Разлет денег 
-        if (_particleSystem != null) _particleSystem.Play();
-        
-        if( _moneyParent == null) return;
-        foreach (Transform child in _moneyParent)
-        {
-            if (child.GetComponent<BoxCollider>() != null)
-            {
-                child.GetComponent<MeshRenderer>().sharedMaterial = _dollarMaterial;
-                child.GetComponent<Rigidbody>().useGravity = true;
-            }
-        }
     }
 
     private void DisableControl()
@@ -156,17 +159,12 @@ public class CarDestructionController : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
+        // обнуляем скорости — используем стандартные поля, если ваши расширения недоступны
         _rb.linearVelocity = Vector3.zero;
         _rb.angularVelocity = Vector3.zero;
 
         if (_freezeKinematic)
-        {
             _rb.isKinematic = true;
-        }
-        else
-        {
-            //_rb.linearDamping = 1000f;      // альтернативный «жёсткий стоп», если kinematic не хочется
-            //_rb.angularDamping = 1000f;
-        }
+        // иначе можно было бы временно поднять damping, но обычно не нужно
     }
 }
