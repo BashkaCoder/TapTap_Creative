@@ -20,6 +20,7 @@ public class ShooterController : MonoBehaviour
     [SerializeField] private float _cooldownTime = 2f;
 
     [SerializeField] private AimingReticle reticle;
+    [SerializeField] private Health _health;
 
     private static readonly int Shooting = Animator.StringToHash("Shooting");
     private Coroutine _moveRoutine;
@@ -45,9 +46,13 @@ public class ShooterController : MonoBehaviour
     private void Start()
     {
         if (_isPlayer)
+            StartShooting(); // игрок начинает стрелять сразу\
+
+        _health.OnDied += () =>
         {
-            StartShooting(); // игрок начинает стрелять сразу
-        }
+            gameObject.SetActive(false);
+            _npcRootTransform.gameObject.SetActive(false);
+        };
     }
 
     private void Update()

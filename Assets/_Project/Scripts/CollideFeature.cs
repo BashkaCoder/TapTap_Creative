@@ -2,14 +2,12 @@ using UnityEngine;
 
 public class CollideFeature : MonoBehaviour
 {
-    [SerializeField] private ShooterController _controller;
     [SerializeField] private Health _health;
     
     private void OnCollisionEnter(Collision other)
     {
         if (TryFindHitable(other.collider.gameObject, out var hitable))
         {
-            _controller?.HandleSelfCollision();
             hitable.Hit(gameObject);
             _health.Hit(other.gameObject);
         }
@@ -19,7 +17,6 @@ public class CollideFeature : MonoBehaviour
     {
         if (TryFindHitable(other.gameObject, out var hitable))
         {
-            _controller?.HandleSelfCollision();
             hitable.Hit(gameObject);
         }
     }

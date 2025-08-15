@@ -14,7 +14,7 @@ public class Rifle : MonoBehaviour
     [SerializeField] private LayerMask _hitMask;
     [SerializeField] private GameObject _bulletImpactEffectPrefab;
     [SerializeField] private GameObject _bulletHoleDecalPrefab;
-    [SerializeField] private float _decalLifetime = 10f;
+    [SerializeField] private float _decalLifetime = 3.5f;
     
     [Header("Fire Rate")]
     [SerializeField] private float _minFireDelay = 0.07f;

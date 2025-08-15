@@ -16,6 +16,8 @@ public class Health : MonoBehaviour, IHitable
 
     [Header("Incoming Damage Multiplier")]
     [SerializeField] private float _damageTakenMultiplier = 1f;
+    
+    [SerializeField] private ShooterController _shooter;
 
     public float Current { get; private set; }
     public bool IsDead => Current <= 0f;
@@ -72,8 +74,14 @@ public class Health : MonoBehaviour, IHitable
     {
         if (rawDamage <= 0f) return;
 
-        float final = ignoreMultiplier ? rawDamage
-                                       : rawDamage * Mathf.Max(_damageTakenMultiplier, 0f);
+        float final = ignoreMultiplier 
+            ? rawDamage 
+            : rawDamage * Mathf.Max(_damageTakenMultiplier, 0f);
+
+        if (final <= 0f) return;
+
+        // >>> Добавляем вызов у ShooterController (если есть) <<<
+        _shooter.HandleSelfCollision();
 
         Current -= final;
         OnChanged?.Invoke(Current, _max);
